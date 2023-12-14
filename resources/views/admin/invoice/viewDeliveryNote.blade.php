@@ -59,7 +59,7 @@
                                 <div class="col-12">
                                     <div>
                                         <div class="p-2">
-                                            <h3 class="font-size-16"><strong>Invoice Details</strong></h3>
+                                            <h3 class="font-size-16"><strong>Delivery Note</strong></h3>
                                         </div>
                                         <div class="">
                                             <div class="table-responsive">
@@ -95,9 +95,9 @@
                                                             {{-- <th class="text-center">Category</th> --}}
                                                             <th class="text-center">Product Name</th>
                                                             {{-- <th class="text-center">Current Stock</th> --}}
+                                                            <th class="text-center">Product Code</th>
                                                             <th class="text-center">Quatity</th>
-                                                            <th class="text-center">Unit Price</th>
-                                                            <th class="text-center">Total Price</th>
+                                                            {{-- <th class="text-center">Total Price</th> --}}
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -111,21 +111,31 @@
                                                                 {{-- <td class="text-center">{{ $details->category->name }}</td> --}}
                                                                 <td class="text-center">{{ $details->product->name }}</td>
                                                                 {{-- <td class="text-center">{{ $details->product->quantity }}</td> --}}
+                                                                <td class="text-center">#{{ $details->id }}</td>
                                                                 <td class="text-center">{{ $details->selling_qty }}</td>
-                                                                <td class="text-center">
+                                                                {{-- <td class="text-center">
                                                                     {{ number_format($details->unit_price) }}</td>
                                                                 <td class="text-center">
-                                                                    {{ number_format($details->selling_price) }}</td>
+                                                                    {{ number_format($details->selling_price) }}</td> --}}
                                                             </tr>
                                                             @php
                                                                 $total_sum += $details->selling_price;
                                                             @endphp
                                                         @endforeach
                                                         <tr>
-                                                            <td colspan="3"></td>
-                                                            <td colspan="1">Sub Total</td>
-                                                            <td class="text-center">{{ number_format($total_sum) }}</td>
+                                                            <td colspan="4"></td>
                                                         </tr>
+                                                        <tr>
+                                                            <td class="text-center" colspan="4">Goods delivered in good
+                                                                condition</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-center" colspan="2">Date:
+                                                                ..............................</td>
+                                                            <td colspan="1">Signature:..........................</td>
+                                                            <td colspan="1">Name:.................................</td>
+                                                        </tr>
+                                                        {{--
                                                         @if ($invoice->payment->discount_amount)
                                                             <tr>
                                                                 <td colspan="3"></td>
@@ -159,7 +169,7 @@
                                                                     {{ number_format($invoice->payment->total_amount, 2) }}
                                                                 </h4>
                                                             </td>
-                                                        </tr>
+                                                        </tr> --}}
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -183,9 +193,6 @@
                     </div>
                 </div> <!-- end col -->
             </div> <!-- end row -->
-
-
-
         </div> <!-- container-fluid -->
     </div>
 @endsection

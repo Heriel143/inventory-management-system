@@ -17,12 +17,15 @@
     <!-- Style -->
     <link rel="stylesheet" href="css/style.css" />
 
-    <title>Login #7</title>
+    <title>Login </title>
 </head>
 
 <body>
     <div class="content">
         <div class="container">
+            <div class=" text-3xl font-bold justify-content-center">
+                <h1>PostHarvest Real Time Inventory Management System (PHRTIMS)</h1>
+            </div>
             <div class="row">
                 <div class="col-md-6">
                     <img src="images/undraw_remotely_2j6y.svg" alt="Image" class="img-fluid" />
@@ -33,8 +36,8 @@
                             <div class="mb-4">
                                 <h3>Sign In</h3>
                                 <p class="mb-4">
-                                    Lorem ipsum dolor sit amet elit. Sapiente sit aut eos
-                                    consectetur adipisicing.
+                                    {{-- Lorem ipsum dolor sit amet elit. Sapiente sit aut eos
+                                    consectetur adipisicing. --}}
                                 </p>
                             </div>
                             <form action="{{ route('login') }}" method="POST">

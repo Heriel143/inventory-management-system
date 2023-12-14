@@ -13,19 +13,21 @@
                     </span>
                 </a> --}}
                 {{-- line-height: 20px;
-    padding-top: 6px;
-    font-size: 18px; --}}
+                    padding-top: 6px;
+                    font-size: 18px; --}}
 
                 <a href="index.html" class="h-3 logo logo-light">
                     <span class="flex pt-4 logo-sm">
                         <img src="{{ asset('backend/assets/images/logo-sm.png') }}" alt="logo-sm-light" height="22">
                     </span>
                     <span class="flex items-center justify-center pt-2 logo-lg">
-
+                        @php
+                            use App\Models\Region;
+                            $region = Region::where('id', Illuminate\Support\Facades\Auth::user()->region_id)->get();
+                        @endphp
                         <span class="inline-block mt-3 -mx-5 text-2xl font-semibold leading-6 text-gray-300">
-                            Food Track System
+                            {{ isset($region[0]->name) ? $region[0]->name : '' }}
                         </span>
-                        {{-- <img src="{{ asset('backend/assets/images/logo-light.png') }}" alt="logo-light" height="20"> --}}
                     </span>
                 </a>
             </div>
@@ -41,12 +43,37 @@
                     <span class="ri-search-line"></span>
                 </div>
             </form> --}}
+            {{-- <div class="navbar-brand-box flex ml-44 text-4xl justify-center"> --}}
+            {{-- <a href="index.html" class="logo logo-dark">
+                    <span class="logo-sm">
+                        <img src="{{ asset('backend/assets/images/logo-sm.png') }}" alt="logo-sm" height="22">
+                    </span>
+                    <span class="logo-lg">
+                        <img src="{{ asset('backend/assets/images/logo-dark.png') }}" alt="logo-dark" height="20">
+                    </span>
+                </a> --}}
+            {{-- line-height: 20px;
+            padding-top: 6px;
+            font-size: 18px; --}}
 
+            <a href="/dashboard" class="h-3 logo logo-light">
+                {{-- <span class="d-flex pt-4 logo-sm">
+                        <img src="{{ asset('backend/assets/images/logo-sm.png') }}" alt="logo-sm-light" height="22">
+                    </span> --}}
+                {{-- <span class="flex items-center justify-center pt-2 logo-lg"> --}}
+
+                <span class="inline-block mt-3 ml-5 text-2xl font-semibold leading-6 text-gray-300">
+                    PostHarvest Real Time Inventory Management System (PHRTIMS)
+                </span>
+                {{-- <img src="{{ asset('backend/assets/images/logo-light.png') }}" alt="logo-light" height="20"> --}}
+                {{-- </span> --}}
+            </a>
+            {{-- </div> --}}
 
         </div>
 
         <div class="d-flex">
-
+            {{-- <h2 class="text-gray-300 -ml-36 mr-9 mt-9">PHRT Inventory Management System</h2> --}}
             <div class="dropdown d-inline-block d-lg-none ms-2">
                 <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -79,6 +106,8 @@
             </div>
             @php
                 use App\Models\Notification;
+                // use App\Models\Region;
+                // $region = Region::where('id',Auth::user()->region_id)->get();
                 $notifications = Notification::where('status', 0)
                     ->orderBy('id', 'desc')
                     ->take(5)

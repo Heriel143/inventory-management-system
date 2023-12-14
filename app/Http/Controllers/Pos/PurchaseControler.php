@@ -34,7 +34,7 @@ class PurchaseControler extends Controller
     public function approvePurchase($id)
     {
         $purchase = Purchase::findOrFail($id);
-        // Product::where('id', $purchase->product_id)->increment('quantity', $purchase->buying_qty);
+        Product::where('id', $purchase->product_id)->increment('quantity', $purchase->buying_qty);
         $purchase->status = '1';
         $purchase->updated_by = Auth::user()->id;
         $purchase->save();

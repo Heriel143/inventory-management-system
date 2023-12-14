@@ -30,11 +30,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+    Route::get('/getdata', [DataController::class, 'getData'])->name('get-data');
 
 
     // return view('admin.index');
@@ -107,6 +108,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/admin/store/product', 'storeProduct')->name('store.product');
         Route::get('/admin/edit/product/{id}', 'editProduct')->name('edit.product');
         Route::post('/admin/update/product', 'updateProduct')->name('update.product');
+        Route::post('/admin/view/product', 'viewProduct')->name('view.product');
         Route::get('/admin/delete/product/{id}', 'deleteProduct')->name('delete.product');
     });
 
@@ -132,6 +134,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/admin/delete/invoice/{id}', 'deleteInvoice')->name('delete.invoice');
         Route::post('//admin/store/approval/{id}', 'storeApproval')->name('store.approval');
         Route::get('/admin/view/invoice/{id}', 'viewInvoice')->name('view.invoice');
+        Route::get('/admin/view/proforma/{id}', 'viewProforma')->name('view.proforma');
+        Route::get('/admin/view/delivery/{id}', 'viewDelivery')->name('view.delivery');
         Route::get('/admin/get-stock', 'getStock')->name('get-stock');
         Route::get('/admin/get-product-invoice', 'getProduct')->name('get-product-invoice');
         Route::get('/admin/daily/invoice/report', 'dailyInvoiceReport')->name('daily.invoice.report');

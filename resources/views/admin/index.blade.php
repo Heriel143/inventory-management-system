@@ -104,10 +104,11 @@
                 </div><!-- end col --> --}}
             </div><!-- end row -->
             <div class="mb-4">
+
                 <iframe width="450" height="260" style="border: 1px solid #cccccc;"
-                    src="https://thingspeak.com/channels/2217276/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Dar-es-Salaam&type=line"></iframe>
-
-
+                    src="https://thingspeak.com/channels/2223180/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+                {{-- <iframe width="450" height="260" style="border: 1px solid #cccccc;"
+                    src="https://thingspeak.com/channels/2223347/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe> --}}
             </div>
             {{-- <div>
                 <h1>
@@ -201,7 +202,6 @@
                                     aria-expanded="false">
                                     <i class="mdi mdi-dots-vertical"></i>
                                 </a>
-                                {{-- --}}
                             </div>
 
                             <h4 class="mb-4 card-title">Latest Sales</h4>
@@ -257,4 +257,26 @@
         </div>
 
     </div>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: "{{ route('get-data') }}",
+                type: 'GET',
+                data: {
+                    // category_id: category_id,
+                    supplier_id: supplier_id
+                },
+                success: function(data) {
+                    console.log(data);
+                    // var html = '<option value="">Select Product</option>';
+                    // $.each(data, function(key, v) {
+                    //     html += '<option value="' + v.id +
+                    //         '">' + v.name + '</option>'
+                    // });
+                    // $('#product_id').html(html);
+                }
+            })
+
+        });
+    </script>
 @endsection

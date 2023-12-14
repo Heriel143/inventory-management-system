@@ -93,7 +93,9 @@
                         @if (Auth::user()->role_id == 3)
                             <li><a href="{{ route('pending.purchases') }}">Approval Purchases</a></li>
                         @endif
-                        <li><a href="{{ route('receive.purchases.all') }}">Receive Purchases</a></li>
+                        @if (Auth::user()->role_id == 1)
+                            <li><a href="{{ route('receive.purchases.all') }}">Receive Purchases</a></li>
+                        @endif
                         <li><a href="{{ route('receive.purchases.incomplete') }}">Incomplete Received Purchases</a>
                         </li>
                         {{-- @endif --}}

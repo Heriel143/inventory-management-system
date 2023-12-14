@@ -31,8 +31,10 @@
                                     <div class="invoice-title">
 
                                         <h3 class="flex">
-                                            <img src="{{ asset('backend/assets/images/logo-sm.png') }}" alt="logo"
-                                                height="24" width="28" class="mr-2" />Inventory Management System
+                                            {{-- <img src="{{ asset('backend/assets/images/logo-sm.png') }}" alt="logo"
+                                                height="24" width="28" class="mr-2" /> --}}
+                                            PostHarvest Real Time
+                                            Inventory Management System (PHRTIMS)
                                         </h3>
                                     </div>
                                     <hr>

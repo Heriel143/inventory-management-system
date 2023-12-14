@@ -36,7 +36,7 @@ class ReceivedPurchaseController extends Controller
     public function receiveDetailOn(Request $request)
     {
         $purchase = Purchase::findOrFail($request->purchase_id);
-        Product::where('id', $purchase->product_id)->increment('quantity', $request->quantity);
+        // Product::where('id', $purchase->product_id)->increment('quantity', $request->quantity);
         ReceivedPurchase::insert([
             "purchase_id" => $request->purchase_id,
             'amount' => $request->quantity,
@@ -59,7 +59,7 @@ class ReceivedPurchaseController extends Controller
     public function receive($id)
     {
         $purchase = Purchase::findOrFail($id);
-        Product::where('id', $purchase->product_id)->increment('quantity', $purchase->buying_qty);
+        // Product::where('id', $purchase->product_id)->increment('quantity', $purchase->buying_qty);
         ReceivedPurchase::insert([
             "purchase_id" => $id,
             'amount' => $purchase->buying_qty,

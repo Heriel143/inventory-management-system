@@ -38,6 +38,16 @@ class InvoiceController extends Controller
         $invoice = Invoice::findOrFail($id);
         return view('admin.invoice.viewInvoice', compact('invoice'));
     }
+    public function viewProforma($id)
+    {
+        $invoice = Invoice::findOrFail($id);
+        return view('admin.invoice.viewProforma', compact('invoice'));
+    }
+    public function viewDelivery($id)
+    {
+        $invoice = Invoice::findOrFail($id);
+        return view('admin.invoice.viewDeliveryNote', compact('invoice'));
+    }
 
     public function dailyInvoiceReport()
     {

@@ -59,7 +59,7 @@
                                 <div class="col-12">
                                     <div>
                                         <div class="p-2">
-                                            <h3 class="font-size-16"><strong>Invoice Details</strong></h3>
+                                            <h3 class="font-size-16"><strong>Proforma Invoice</strong></h3>
                                         </div>
                                         <div class="">
                                             <div class="table-responsive">
@@ -121,7 +121,7 @@
                                                                 $total_sum += $details->selling_price;
                                                             @endphp
                                                         @endforeach
-                                                        <tr>
+                                                        {{-- <tr>
                                                             <td colspan="3"></td>
                                                             <td colspan="1">Sub Total</td>
                                                             <td class="text-center">{{ number_format($total_sum) }}</td>
@@ -148,7 +148,7 @@
                                                                 <td class="text-center">
                                                                     {{ number_format($invoice->payment->due_amount) }}</td>
                                                             </tr>
-                                                        @endif
+                                                        @endif --}}
                                                         <tr>
                                                             <td colspan="3"></td>
                                                             <td colspan="1">
@@ -156,7 +156,7 @@
                                                             </td>
                                                             <td colspan="2">
                                                                 <h4>Tsh
-                                                                    {{ number_format($invoice->payment->total_amount, 2) }}
+                                                                    {{ number_format($invoice->payment->total_amount, 1) }}
                                                                 </h4>
                                                             </td>
                                                         </tr>
@@ -183,8 +183,6 @@
                     </div>
                 </div> <!-- end col -->
             </div> <!-- end row -->
-
-
 
         </div> <!-- container-fluid -->
     </div>

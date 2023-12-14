@@ -133,57 +133,55 @@
             <input type = "hidden"
         name = "purchase_no[]"
         value = "@{{ purchase_no }}" >
-            
-            
-                <td >
+            <td >
                 <input type = "hidden"
         name = "supplier_id[]"
         value = "@{{ supplier_id }}" >
-                @{{ supplier_name }} 
-                </td> 
+                @{{ supplier_name }}
+                </td>
             <td >
             <input type = "hidden"
         name = "product_id[]"
         value = "@{{ product_id }}" >
-            @{{ product_name }} 
-            </td> 
+            @{{ product_name }}
+            </td>
             <td >
             <input type = "number"
         min = "1"
         class = "text-left form-control buying_qty"
         name = "buying_qty[]"
         value = "" >
-            
-            </td> 
+
+            </td>
         <td >
-            
+
             <input type = "number"
         class = "text-left form-control unit_price"
         name = "unit_price[]"
         value = "" >
-            
-        </td> 
+
+        </td>
         <td >
-            
+
             <input type = "text"
         class = " form-control"
         name = "description[]"
         value = "" >
-            
-        </td> 
+
+        </td>
         <td >
-            
+
             <input type = "number"
         class = "text-left form-control buying_price"
         name = "buying_price[]"
         value = "0"
         readonly >
-            
-        </td> 
+
+        </td>
         <td >
-            
-            <i class = "btn btn-danger btn-sm fas fa-window-close removeeventmore" > </i> 
-                </td > 
+
+            <i class = "btn btn-danger btn-sm fas fa-window-close removeeventmore" > </i>
+                </td >
             </tr>
     </script>
     <script type="text/javascript">

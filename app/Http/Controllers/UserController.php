@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Invoice;
+use App\Models\InvoiceDetail;
+use App\Models\Purchase;
 use App\Models\Region;
 use App\Models\Role;
 use App\Models\User;
@@ -26,6 +28,10 @@ class UserController extends Controller
 
         $purchase = $purchase[0]->total_amount;
         $sales = $sales[0]->total_amount;
+        // $purchases = Purchase::where('product_id', 1)->where('status', 1)->selectRaw('SUM(buying_qty) as quantity')->get();
+        // $waiting = Purchase::where('product_id', 1)->where('status', 1)->where('received', 0)->selectRaw('SUM(buying_qty) as quantity')->get();
+        // $sells = InvoiceDetail::where('product_id', 1)->where('status', 1)->selectRaw('SUM(selling_qty) as quantity')->get();
+        // dd($sells[0]->quantity);
         return view('admin.index', compact('purchase', 'sales', 'invoices'));
     }
     public function allEmployees()

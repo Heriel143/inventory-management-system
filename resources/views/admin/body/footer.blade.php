@@ -4,11 +4,11 @@
             <div class="col-sm-6">
                 <script>
                     document.write(new Date().getFullYear())
-                </script> © Inventory Management System.
+                </script> © PostHarvest Real Time Inventory Management System (PHRTIMS).
             </div>
             <div class="col-sm-6">
                 <div class="text-sm-end d-none d-sm-block">
-                    Final Year Project
+                    .
                 </div>
             </div>
         </div>

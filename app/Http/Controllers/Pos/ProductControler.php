@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Pos;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\InvoiceDetail;
 use App\Models\Product;
+use App\Models\Purchase;
 use App\Models\Supplier;
 use App\Models\Unit;
 use Carbon\Carbon;
@@ -81,5 +83,20 @@ class ProductControler extends Controller
         );
 
         return redirect()->route('all.products')->with($notification);
+    }
+    public function viewProduct(Request $request)
+    {
+        // dd($request->sensor);
+        $sensor = $request->sensor;
+        $sensor = (int)$sensor;
+        $data = Product::findOrFail(1);
+        $purchases = Purchase::where('product_id', 1)->where('status', 1)->selectRaw('SUM(buying_qty) as quantity')->get();
+        $waiting = Purchase::where('product_id', 1)->where('status', 1)->where('received', 0)->selectRaw('SUM(buying_qty) as quantity')->get();
+        $sells = InvoiceDetail::where('product_id', 1)->where('status', 1)->selectRaw('SUM(selling_qty) as quantity')->get();
+        $purchases = $purchases[0]->quantity;
+        $waiting = $waiting[0]->quantity;
+        $sells = $sells[0]->quantity;
+        // dd($data);
+        return view('admin.product.viewProduct', compact('data', 'purchases', 'waiting', 'sells', 'sensor'));
     }
 }

@@ -57,9 +57,17 @@
 
                                             <td>
 
+                                                <a href="{{ route('view.proforma', $invoice->id) }}"
+                                                    class="btn btn-primary sm" title="Print Proforma" id="print"> <i
+                                                        class="fas fa-print"></i>
+                                                </a>
                                                 <a href="{{ route('view.invoice', $invoice->id) }}"
                                                     class="btn btn-success sm" title="Print Invoice" id="print"> <i
                                                         class="fas fa-print"></i>
+                                                </a>
+                                                <a href="{{ route('view.delivery', $invoice->id) }}"
+                                                    class="btn btn-warning sm" title="Print Delivery Note" id="print">
+                                                    <i class="fas fa-print"></i>
                                                 </a>
                                                 @if ($invoice->status == 0)
                                                     <a href="#" class="btn btn-warning sm" title="Print Invoice"

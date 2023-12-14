@@ -20,10 +20,10 @@
 
                             <div class="pb-4">
 
-                                <a href="{{ route('add.invoice') }}"
+                                {{-- <a href="{{ route('add.invoice') }}"
                                     class="justify-center inline-block float-right px-3 py-2 font-semibold text-white bg-blue-900 rounded-lg hover:bg-blue-800">
                                     <i class="fas fa-plus-circle"></i> Add
-                                    Invoice</a>
+                                    Invoice</a> --}}
 
                                 <h4 class="text-base font-semibold">Invoice Data </h4>
                             </div>
