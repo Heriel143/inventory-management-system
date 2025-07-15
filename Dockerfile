@@ -1,5 +1,4 @@
-# Stage 1: Composer dependencies
-FROM docker.io/library/composer:2.7 AS composer-deps
+FROM docker.io/library/composer:2.6.6 AS composer-deps
 WORKDIR /var/www
 COPY composer.json composer.lock ./
 RUN composer install --no-dev --optimize-autoloader
