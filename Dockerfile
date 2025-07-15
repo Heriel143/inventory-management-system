@@ -1,13 +1,42 @@
-FROM docker.io/library/composer:2.6.6 AS composer-deps
-WORKDIR /var/www
+# Stage 1: Build application using Composer
+FROM composer:2.6.6 AS build
+WORKDIR /app
 COPY composer.json composer.lock ./
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --no-scripts --prefer-dist
 COPY . .
 
-# Stage 2: Final image
-FROM docker.io/library/php:8.2-fpm-alpine
-RUN apk add --no-cache nginx bash curl git libzip-dev zip unzip freetype-dev libjpeg-turbo-dev libpng-dev oniguruma-dev icu-dev zlib-dev libxml2-dev \
-    && docker-php-ext-install pdo pdo_mysql zip intl mbstring bcmath xml
+# Stage 2: Production image with PHP and Nginx
+FROM php:8.2-fpm-alpine
+# Install system dependencies
+RUN apk add --no-cache \
+    nginx \
+    curl \
+    bash \
+    git \
+    libpng \
+    libjpeg-turbo \
+    libwebp \
+    freetype \
+    libzip-dev \
+    zip \
+    unzip \
+    supervisor
+# PHP Extensions
+RUN docker-php-ext-install pdo pdo_mysql zip intl mbstring bcmath xml
+# Configure PHP
+COPY docker/php.ini /usr/local/etc/php/php.ini
+# Copy built app from builder stage
+COPY --from=build /app /var/www
+# Set working directory
 WORKDIR /var/www
-COPY --from=composer-deps /var/www /var/www
-CMD ["php-fpm"]
+# Copy nginx config
+COPY docker/nginx.conf /etc/nginx/nginx.conf
+# Copy supervisord config
+COPY docker/supervisord.conf /etc/supervisord.conf
+# Set correct permissions
+RUN chown -R www-data:www-data /var/www \
+    && chmod -R 755 /var/www/storage
+# Expose ports
+EXPOSE 80
+# Start PHP-FPM and Nginx via Supervisor
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
