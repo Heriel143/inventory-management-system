@@ -1,5 +1,6 @@
 # Stage 1: Build application using Composer
-FROM composer:2.6.6 AS build
+FROM php:8.2-fpm-alpine AS build
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 WORKDIR /app
 COPY composer.json composer.lock ./
 RUN composer install --no-dev --no-scripts --prefer-dist
@@ -21,7 +22,7 @@ RUN apk add --no-cache \
     zip \
     unzip \
     supervisor
-# PHP Extensions
+# Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql zip intl mbstring bcmath xml
 # Configure PHP
 COPY docker/php.ini /usr/local/etc/php/php.ini
@@ -29,9 +30,9 @@ COPY docker/php.ini /usr/local/etc/php/php.ini
 COPY --from=build /app /var/www
 # Set working directory
 WORKDIR /var/www
-# Copy nginx config
+# Copy Nginx config
 COPY docker/nginx.conf /etc/nginx/nginx.conf
-# Copy supervisord config
+# Copy Supervisor config
 COPY docker/supervisord.conf /etc/supervisord.conf
 # Set correct permissions
 RUN chown -R www-data:www-data /var/www \
