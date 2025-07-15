@@ -23,7 +23,9 @@ RUN apk add --no-cache \
     unzip \
     supervisor \
     icu-libs \
-    icu-dev
+    icu-dev \
+    oniguruma \
+    oniguruma-dev
 # Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql zip intl mbstring bcmath xml
 # Configure PHP
