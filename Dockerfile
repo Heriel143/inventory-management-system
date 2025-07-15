@@ -21,7 +21,9 @@ RUN apk add --no-cache \
     libzip-dev \
     zip \
     unzip \
-    supervisor
+    supervisor \
+    icu-libs \
+    icu-dev
 # Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql zip intl mbstring bcmath xml
 # Configure PHP
